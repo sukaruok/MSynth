@@ -1,0 +1,179 @@
+.menu-area {
+	height: 100px;
+}
+
+.module-area {
+	height: 300px;
+}
+
+.keyboard-area {
+	position: relative;
+}
+
+.module {
+	width: 100px;
+	height: 200px;
+	position: absolute;
+	background-color: #aaaaaa;
+}
+
+.module-input {
+	top: 200px;
+	left: 100px;
+	background-color: #aa6666;
+}
+
+.module-effect {
+	top: 200px;
+	left: 300px;
+	background-color: #66aa66;
+}
+
+.module-destination {
+  width: 100px;
+  height: 100px;
+	top: 200px;
+	left: 500px;
+}
+
+.module-play {
+  background-image: url(../img/play-32.png);
+  background-repeat: no-repeat;
+  bottom: 30px;
+  left: 37px;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+}
+
+.module-stop {
+  background-image: url(../img/stop-32.png);
+  background-repeat: no-repeat;
+  bottom: 30px;
+  left: 35px;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+}
+
+.module-speaker {
+  background-image: url(../img/speaker-32.png);
+  background-repeat: no-repeat;
+  bottom: 35px;
+  left: 35px;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+}
+
+.module-name {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.node {
+	width: 24px;
+  height: 24px;
+  padding:1px;
+  -webkit-border-radius: 25px;/* width,heightの半分 */
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  border: 3px solid;
+  background-color: #fff;/* 円の色 */
+  position: absolute;
+  top: 35px;
+}
+
+.node-selected {
+  background-color: #2368a8;/* 円の色 */
+}
+
+.node-connected {
+  background-color: #44aa44;/* 円の色 */
+}
+
+.node-input {
+	left: -15px;
+}
+
+.node-output {
+	left: 85px;
+}
+
+.knob {
+  position: relative;
+  margin: 10px 0px 0px 10px;
+}
+
+.knob-name {
+  position: absolute;
+  top: 90px;
+  width: 100%;
+  text-align: center;}
+
+
+/*
+ * 鍵盤
+ */
+div#keyboard {
+  width: 100%;
+  height: 220px;
+}
+ul#white-key-set {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  margin: 0;
+  padding: 0;
+  width: 650px;
+  list-style: none;
+}
+ul#black-key-set {
+  position: absolute;
+  top: 10px;
+  left: 45px;
+  margin: 0;
+  padding: 0;
+  width: 650px;
+  list-style: none;
+}
+ul#white-key-set li.key {
+  float: left;
+  padding-top: 170px;
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  color: black;
+  border: solid 1px black;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none; 
+  user-select: none;
+}
+ul#black-key-set li.key {
+  float: left;
+  margin-right: 20px;
+  padding-top: 90px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  color: white;
+  border: solid 1px black;
+  background-color: black;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none; 
+  user-select: none;
+}
+ul#white-key-set li.key.keydown,
+ul#black-key-set li.key.keydown {
+  background-color: pink;
+}
+ul#black-key-set li.key.hidden {
+  visibility: hidden;
+}
