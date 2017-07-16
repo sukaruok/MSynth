@@ -5,9 +5,15 @@ Modular synthesizer with Web Audio API
 Web Audio API を使ったモジュラーシンセです。
 
 ## Demo
+https://sukaruok.github.io/MSynth/main.html
 
-## Usage
+Nodeを同士を結合させることで音声を出力できます。
 
-## License
+例1）
+osc → gain → dest
+
+例2）
+keuboard → dest
 
 ## Author
+スカル：https://twitter.com/sukaruok
