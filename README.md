@@ -7,7 +7,9 @@ Web Audio API を使ったモジュラーシンセです。
 ## Demo
 https://sukaruok.github.io/MSynth/main.html
 
-Nodeを同士を結合させることで音声を出力できます。
+プルダウンから作成したいモジュールを選択し、
+Node同士をクリックし、接続することで音声を出力できます。
+
 
 例1）
 osc → gain → dest
