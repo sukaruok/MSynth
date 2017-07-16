@@ -19,6 +19,7 @@ keuboard → dest
 
 ## Author
 スカル：https://twitter.com/sukaruok
+ブログ：http://www.shitemiyou.com/synthesizer/web-audio-api/
 
 ## Other
 ・シーケンサーサンプル
