@@ -34,7 +34,7 @@ var module = function(name, inputNode, outputNode, device){
 	}
 
 	// moduleの新規作成
-	module.prototype.createModule = function(){
+	module.createModule = function(){
 		// 作成するモジュールの種類を取得
 		var name = document.querySelector(".module-list").value;
 		var m;
