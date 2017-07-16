@@ -19,3 +19,7 @@ keuboard → dest
 
 ## Author
 スカル：https://twitter.com/sukaruok
+
+## Other
+・シーケンサーサンプル
+https://sukaruok.github.io/sequencer/sequencer.html
