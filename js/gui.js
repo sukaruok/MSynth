@@ -1,4 +1,4 @@
-var gui = function() {
+var gui = function($) {
 
 	var gui = function(){
 		var module1;
@@ -22,114 +22,132 @@ var gui = function() {
 	};
 
 	// ノードにイベントを追加
-	gui.bindable = function(target) {
-		target.addEventListener("click", function(){
+	gui.bindable = function(m) {
+		var element = document.querySelector("." + m.name);
+		var inputNode = document.querySelector("." + m.inputNode.name);
+		var outputNode = document.querySelector("." + m.outputNode.name);
 
-			// targetからオブジェクトを検索
-			if(target.parentNode.classList.contains("module-input")){
-				// 親要素（module）の特定
-				
+		// 汚い
+		var array = [];
+		if (inputNode) {
+			array.push(inputNode)
+		}
+
+		if (outputNode) {
+			array.push(outputNode)
+		}
+		
+		// for文の中を別メソッドで定義すること
+		for(var i = 0; i < array.length; i++) {
+
+			array[i].addEventListener("click", function(){
+
+				// targetからオブジェクトを検索
+				if(m.type === "osc"){
+					// 親要素（module）の特定
+					
 					// 選択機能
-					if(moduleObjs["module-input"].outputNode.selected === false) {
-						moduleObjs["module-input"].outputNode.selected = true;
-						document.querySelector("." + moduleObjs["module-input"].outputNode.name).classList.add('node-selected');
+					if(m.outputNode.selected === false) {
+						m.outputNode.selected = true;
+						document.querySelector("." + m.outputNode.name).classList.add('node-selected');
 						// モジュールを変数にセットする
 						if (gui.module1) {
-							gui.module2 = moduleObjs["module-input"];
+							gui.module2 = m;
 						} else {
-							gui.module1 = moduleObjs["module-input"];
+							gui.module1 = m;
 						}
 
 					// キャンセル
 					} else {
-						moduleObjs["module-input"].outputNode.selected = false;
-						document.querySelector("." + moduleObjs["module-input"].outputNode.name).classList.remove('node-selected');
+						m.outputNode.selected = false;
+						document.querySelector("." + m.outputNode.name).classList.remove('node-selected');
 						gui.module1 = null;
 					}
-				// } 
-			}
+					// } 
+				}
 
-			// targetからオブジェクトを検索
-			if(target.parentNode.classList.contains("module-effect")){
-				// 親要素（module）の特定
-				if (target.classList.contains("node-input")) {
+				// targetからオブジェクトを検索
+				if(m.type === "gain" || m.type === "keyboard"){
+					// 親要素（module）の特定
+					if (event.target.classList.contains("node-input")) {
 
-					// 選択機能
-					if(moduleObjs["module-effect"].inputNode.selected === false) {
-						// ノードが選択された際の処理
-						moduleObjs["module-effect"].inputNode.selected = true;
-						document.querySelector("." + moduleObjs["module-effect"].inputNode.name).classList.add('node-selected');
+						// 選択機能
+						if(m.inputNode.selected === false) {
+							// ノードが選択された際の処理
+							m.inputNode.selected = true;
+							document.querySelector("." + m.inputNode.name).classList.add('node-selected');
 
-						if (gui.module1) {
-							if (gui.module1.name !== moduleObjs["module-effect"].name) {
-								gui.module2 = moduleObjs["module-effect"];
+							if (gui.module1) {
+								if (gui.module1.name !== m.name) {
+									gui.module2 = m;
+								}
+							} else {
+								gui.module1 = m;
 							}
+
+						// キャンセル機能
 						} else {
-							gui.module1 = moduleObjs["module-effect"];
+							m.inputNode.selected = false;
+							document.querySelector("." + m.inputNode.name).classList.remove('node-selected');
+							gui.module1 = null;
+						}
+					} 
+
+					// 選択
+					if(event.target.classList.contains("node-output")) {
+
+						// 選択機能
+						if(m.outputNode.selected === false) {
+
+							m.outputNode.selected = true;
+							document.querySelector("." + m.outputNode.name).classList.add('node-selected');
+
+							if (gui.module1) {
+								if (gui.module1.name !== m.name) {
+									gui.module2 = m;
+								}
+							} else {
+								gui.module1 = m;
+							}
+
+						// キャンセル機能
+						} else {
+							m.outputNode.selected = false;
+							document.querySelector("." + m.outputNode.name).classList.remove('node-selected');
+							gui.module1 = null;
+						}
+					}
+				}
+
+				// targetからオブジェクトを検索
+				if(m.type === "dest"){
+					if(m.inputNode.selected === false) {
+
+						m.inputNode.selected = true;
+						document.querySelector("."+ m.inputNode.name).classList.add('node-selected');
+
+						// モジュールを変数にセットする
+						if (gui.module1) {
+							gui.module2 = m;
+						} else {
+							gui.module1 = m;
 						}
 
-					// キャンセル機能
 					} else {
-						moduleObjs["module-effect"].inputNode.selected = false;
-						document.querySelector("." + moduleObjs["module-effect"].inputNode.name).classList.remove('node-selected');
+						m.inputNode.selected = false;
+						document.querySelector("." + m.inputNode.name).classList.remove('node-selected');
 						gui.module1 = null;
 					}
-				} 
 
-				// 選択
-				if(target.classList.contains("node-output")) {
+				}
 
-					// 選択機能
-					if(moduleObjs["module-effect"].outputNode.selected === false) {
-
-						moduleObjs["module-effect"].outputNode.selected = true;
-						document.querySelector("." + moduleObjs["module-effect"].outputNode.name).classList.add('node-selected');
-
-						if (gui.module1) {
-							if (gui.module1.name !== moduleObjs["module-effect"].name) {
-								gui.module2 = moduleObjs["module-effect"];
-							}
-						} else {
-							gui.module1 = moduleObjs["module-effect"];
-						}
-
-					// キャンセル機能
-					} else {
-						moduleObjs["module-effect"].outputNode.selected = false;
-						document.querySelector("." + moduleObjs["module-effect"].outputNode.name).classList.remove('node-selected');
-						gui.module1 = null;
+				if (gui.module1 && gui.module2) {
+					if (gui.module1.name !== gui.module2.name) {
+						_connect()
 					}
 				}
-			}
-
-			// targetからオブジェクトを検索
-			if(target.parentNode.classList.contains("module-destination")){
-				if(moduleObjs["module-destination"].inputNode.selected === false) {
-
-					moduleObjs["module-destination"].inputNode.selected = true;
-					document.querySelector("."+ moduleObjs["module-destination"].inputNode.name).classList.add('node-selected');
-
-					// モジュールを変数にセットする
-					if (gui.module1) {
-						gui.module2 = moduleObjs["module-destination"];
-					} else {
-						gui.module1 = moduleObjs["module-destination"];
-					}
-
-				} else {
-					moduleObjs["module-destination"].inputNode.selected = false;
-					document.querySelector("." + moduleObjs["module-destination"].inputNode.name).classList.remove('node-selected');
-					gui.module1 = null;
-				}
-
-			}
-
-			if (gui.module1 && gui.module2) {
-				if (gui.module1.name !== gui.module2.name) {
-					_connect()
-				}
-			}
-		});
+			});
+		}
 	};
 
 	// ノードオブジェクト同士をを結合したい・・・オブジェクトが必要？
@@ -173,41 +191,64 @@ var gui = function() {
 		gui.module2 = null;
 	};
 
-	gui.updateStatus = function(){
+	gui.makeknob = function(m) {
 
-	}
+		// モジュールによりより場合分けが必要
+		if (m.type == "osc") {
+			makeFreqKnob(m);
+			makePlayButton(m);
+		}
+
+		if (m.type == "gain") {
+			makeGainKnob(m);
+		}
+
+		// モジュールのドラッグアンドドロップ操作を可能にする
+        gui.draggable(document.querySelector("." + m.name));
+		
+		// ノードにイベントを追加
+        gui.bindable(m);
+	};
+
+	function makeFreqKnob(m) {
+
+		// ノブの生成
+		$(".dial").knob({
+			max: 14000,
+			min: 20,
+			width : 80,
+			height: 80,
+		});
+
+		// ノブ操作のバインド
+		document.querySelector("." + m.name + " .dial").addEventListener("change", function(){
+			m.device.frequency.value = $("." + m.name + " .dial").val();
+		});
+
+	};
+
+	function makeGainKnob(m) {
+		
+		// ノブの生成
+		$(".gain-dial").knob({
+			max: 100,
+			min: 0,
+			width : 80,
+			height: 80,
+		});	
+	};
+
+	function makePlayButton(m) {
+		// 再生ボタンのバインド
+		document.querySelector("." + m.name + " .module-play").addEventListener("click", function(){
+			if (m.status == 0) {
+				m.play();
+			} else {
+				m.stop();
+			}
+		});
+	};
 
 	return gui;
 
-}();
-
-// モジュールにイベントをを追加
-modules = document.querySelectorAll(".module");
-for (var i = 0; i < modules.length; i++){
-	gui.draggable(modules[i]);
-};
-
-// ノードにイベントをを追加
-nodes = document.querySelectorAll(".node");
-for(var i = 0; i < nodes.length; i++) {
-	gui.bindable(nodes[i]);
-};
-
-// モジュールにイベントを追加 
-// document.querySelector(".button-createModule").addEventListener("click", function(){
-// 	module.createModule();
-// });
-
-// deveiceに値の変更を反映させる
-document.querySelector(".dial").addEventListener("change", function(){
-	moduleObjs["module-input"].device.frequency.value = $('.dial').val();
-});
-
-// 再生ボタンの追加
-document.querySelector(".module-play").addEventListener("click", function(){
-	if (moduleObjs["module-input"].status == 0) {
-		moduleObjs["module-input"].play();
-	} else {
-		moduleObjs["module-input"].stop();
-	}
-});
+}($);

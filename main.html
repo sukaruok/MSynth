@@ -9,80 +9,22 @@
 </head>
 <body>
 	<div></div>
-	<!-- <div class="menu-area">
-		<select name="module-list">
+	 <div class="menu-area">
+		<select class="module-list" name="module-list">
+			<option value="keyboard">keyboard</option>
 			<option value="osc">osc</option>
+			<option value="gain">gain</option>
+			<option value="dest">dest</option>
 		</select>
 		<input class="button-createModule" type="button" value="作成">
-	</div> -->
+	</div> 
 	<div class="module-area">
-		<div class="module module-input">
-			<div class="node node-output node1"></div>
-			<div class="play module-play"></div>
-			<div class="knob freq-knob"><input type="text" value="440" class="dial"></div>
-			<div class="knob-name">freq</div>
-			<div class="module-name">osc</div>
-		</div>
-
-		<div class="module module-effect">
-			<div class="node node-input node2"></div>
-			<div class="node node-output node3"></div>
-			<div class="knob gain-knob"><input type="text" value="0.5" class="gain-dial"></div>
-			<div class="knob-name">vol</div>
-			<div class="module-name">gain</div>
-		</div>
-
-		<div class="module module-destination">
-			<div class="node node-input node4"></div>
-			<div class="module-speaker"></div>
-			<div class="module-name">speaker</div>
-		</div>
 	</div>
-	<!-- <div class="keyboard-area">
-		<div id="keyboard">
-	    <ul id="white-key-set">
-	      <li class="key" id="key-a">a</li>
-	      <li class="key" id="key-s">s</li>
-	      <li class="key" id="key-d">d</li>
-	      <li class="key" id="key-f">f</li>
-	      <li class="key" id="key-g">g</li>
-	      <li class="key" id="key-h">h</li>
-	      <li class="key" id="key-j">j</li>
-	      <li class="key" id="key-k">k</li>
-	    </ul>
-	    <ul id="black-key-set">
-	      <li class="key" id="key-w">w<li>
-	      <li class="key" id="key-e">e<li>
-	      <li class="key hidden"><li>
-	      <li class="key" id="key-t">t<li>
-	      <li class="key" id="key-y">y<li>
-	      <li class="key" id="key-u">u<li>
-	    </ul>
-	  </div>
-	</li> -->
 
-	<script src="./js/main.js" type="text/javascript" charset="utf-8"></script>
 	<script src="./js/device.js" type="text/javascript" charset="utf-8"></script>
 	<script src="./js/node.js" type="text/javascript" charset="utf-8"></script>
 	<script src="./js/module.js" type="text/javascript" charset="utf-8"></script>
 	<script src="./js/gui.js" type="text/javascript" charset="utf-8"></script>
-
-	<script>
-    $(function() {
-        $(".dial").knob({
-        	max: 14000,
-        	min: 20,
-        	width : 80,
-        	height: 80,
-        });
-
-        $(".gain-dial").knob({
-        	max: 100,
-        	min: 0,
-        	width : 80,
-        	height: 80,
-        })
-    });
-	</script>
+	<script src="./js/main.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

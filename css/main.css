@@ -3,11 +3,19 @@
 }
 
 .module-area {
-	height: 300px;
+  height: 300px;
+  position: relative;
 }
 
 .keyboard-area {
 	position: relative;
+}
+
+.keyboard {
+  position: absolute;
+  height: 220px;
+  width: 440px;  
+  
 }
 
 .module {
@@ -99,7 +107,7 @@
 }
 
 .node-output {
-	left: 85px;
+	right: -15px;
 }
 
 .knob {
