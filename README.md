@@ -15,12 +15,7 @@ Node同士をクリックし、接続することで音声を出力できます�
 osc → gain → dest
 
 例2）
-keuboard → dest
-
-## Author
-スカル：https://twitter.com/sukaruok
-
-ブログ：http://www.shitemiyou.com/synthesizer/web-audio-api/
+keyboard → dest
 
 ## Other
 ・シーケンサーサンプル
